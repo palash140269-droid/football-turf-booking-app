@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Football Turf Booking - Home</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #f3f4f6;
+            color: #111827;
+        }
+
+        /* Mobile-first: 360px - 430px viewport */
+        @media (max-width: 768px) {
+            body {
+                font-size: 14px;
+            }
+        }
+
+        /* ===== HEADER ===== */
+        .header {
+            background: white;
+            border-bottom: 1px solid #e5e7eb;
+            padding: 12px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #18a957;
+        }
+
+        .location {
+            font-size: 12px;
+            color: #6b7280;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .header-icons {
+            display: flex;
+            gap: 12px;
+        }
+
+        .icon-btn {
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            color: #111827;
+        }
+
+        /* ===== SEARCH BAR ===== */
+        .search-section {
+            background: white;
+            padding: 16px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            background: #f3f4f6;
+            border-radius: 8px;
+            padding: 10px 12px;
+            gap: 8px;
+        }
+
+        .search-bar input {
+            border: none;
+            background: transparent;
+            width: 100%;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .search-bar input::placeholder {
+            color: #9ca3af;
+        }
+
+        /* ===== FILTER CHIPS ===== */
+        .filter-section {
+            padding: 12px 16px;
+            background: white;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+        }
+
+        .filter-chip {
+            padding: 8px 14px;
+            border-radius: 20px;
+            border: 1px solid #d1d5db;
+            background: white;
+            font-size: 13px;
+            white-space: nowrap;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-chip:hover {
+            border-color: #18a957;
+            color: #18a957;
+        }
+
+        .filter-chip.active {
+            background: #18a957;
+            color: white;
+            border-color: #18a957;
+        }
+
+        /* ===== PROMO BANNER ===== */
+        .promo-banner {
+            margin: 12px 16px;
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            border-radius: 8px;
+            padding: 16px;
+            color: white;
+            text-align: center;
+        }
+
+        .promo-banner h3 {
+            font-size: 16px;
+            margin-bottom: 4px;
+        }
+
+        .promo-banner p {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+
+        /* ===== TURF CARD ===== */
+        .turfs-section {
+            padding: 12px 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 80px;
+        }
+
+        .turf-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .turf-card:active {
+            transform: translateY(2px);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+        }
+
+        .turf-image {
+            width: 100%;
+            height: 160px;
+            background: linear-gradient(135deg, #18a957 0%, #059669 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            color: white;
+            position: relative;
+        }
+
+        .turf-image.image-2 {
+            background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+        }
+
+        .turf-image.image-3 {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+        }
+
+        .rating-badge {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: white;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 3px;
+        }
+
+        .turf-content {
+            padding: 12px;
+        }
+
+        .turf-name {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .turf-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .turf-price {
+            font-size: 14px;
+            font-weight: 600;
+            color: #18a957;
+        }
+
+        .turf-hours {
+            font-size: 12px;
+            color: #6b7280;
+        }
+
+        .turf-tags {
+            display: flex;
+            gap: 4px;
+            flex-wrap: wrap;
+            margin-bottom: 10px;
+        }
+
+        .tag {
+            background: #f3f4f6;
+            color: #374151;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+        }
+
+        .turf-slots {
+            font-size: 12px;
+            color: #6b7280;
+            margin-bottom: 10px;
+        }
+
+        .book-btn {
+            width: 100%;
+            padding: 10px;
+            background: #18a957;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .book-btn:active {
+            background: #16a34a;
+        }
+
+        /* ===== BOTTOM NAVIGATION ===== */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background: white;
+            border-top: 1px solid #e5e7eb;
+            display: flex;
+            justify-content: space-around;
+            padding: 8px 0;
+            z-index: 20;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            padding: 8px;
+            text-decoration: none;
+            color: #6b7280;
+            font-size: 11px;
+            flex: 1;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .nav-item.active {
+            color: #18a957;
+        }
+
+        .nav-icon {
+            font-size: 24px;
+        }
+
+        /* ===== ROLE INDICATOR ===== */
+        .role-selector {
+            padding: 12px 16px;
+            background: #f0fdf4;
+            border-bottom: 2px solid #bbf7d0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .role-badge {
+            display: inline-block;
+            background: #18a957;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .role-text {
+            font-size: 12px;
+            color: #059669;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (min-width: 769px) {
+            .header, .search-section, .filter-section {
+                margin: 0 auto;
+                max-width: 430px;
+            }
+            .turfs-section, .bottom-nav {
+                max-width: 430px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ROLE INDICATOR -->
+    <div class="role-selector">
+        <span class="role-badge">Player</span>
+        <span class="role-text">Logged in as: Arjun Sharma</span>
+    </div>
+
+    <!-- HEADER -->
+    <div class="header">
+        <div class="header-left">
+            <div class="logo">⚽ TurfHub</div>
+            <div class="location">📍 Bengaluru</div>
+        </div>
+        <div class="header-icons">
+            <button class="icon-btn">🔔</button>
+            <button class="icon-btn">❤️</button>
+        </div>
+    </div>
+
+    <!-- SEARCH BAR -->
+    <div class="search-section">
+        <div class="search-bar">
+            <span>🔍</span>
+            <input type="text" placeholder="Search turf by name or area">
+        </div>
+    </div>
+
+    <!-- FILTER CHIPS -->
+    <div class="filter-section">
+        <div class="filter-chip active">Nearby</div>
+        <div class="filter-chip">5v5</div>
+        <div class="filter-chip">7v7</div>
+        <div class="filter-chip">Indoor</div>
+        <div class="filter-chip">Outdoor</div>
+        <div class="filter-chip">Floodlights</div>
+    </div>
+
+    <!-- PROMO BANNER -->
+    <div class="promo-banner">
+        <h3>🎉 Weekend Special</h3>
+        <p>Get 15% off on all bookings this weekend!</p>
+    </div>
+
+    <!-- TURFS SECTION -->
+    <div class="turfs-section">
+        <!-- TURF CARD 1 -->
+        <div class="turf-card">
+            <div class="turf-image">
+                ⚽
+                <div class="rating-badge">⭐ 4.8</div>
+            </div>
+            <div class="turf-content">
+                <div class="turf-name">Greenfield Premier Arena</div>
+                <div class="turf-info">
+                    <div class="turf-price">₹800/hr</div>
+                    <div class="turf-hours">7 AM - 11 PM</div>
+                </div>
+                <div class="turf-tags">
+                    <span class="tag">Indoor</span>
+                    <span class="tag">Floodlights</span>
+                    <span class="tag">Parking</span>
+                </div>
+                <div class="turf-slots">✓ 7 slots available today</div>
+                <button class="book-btn">Book Now</button>
+            </div>
+        </div>
+
+        <!-- TURF CARD 2 -->
+        <div class="turf-card">
+            <div class="turf-image image-2">
+                ⚽
+                <div class="rating-badge">⭐ 4.7</div>
+            </div>
+            <div class="turf-content">
+                <div class="turf-name">City Football Ground</div>
+                <div class="turf-info">
+                    <div class="turf-price">₹600/hr</div>
+                    <div class="turf-hours">6 AM - 10 PM</div>
+                </div>
+                <div class="turf-tags">
+                    <span class="tag">Outdoor</span>
+                    <span class="tag">Parking</span>
+                </div>
+                <div class="turf-slots">✓ 5 slots available today</div>
+                <button class="book-btn">Book Now</button>
+            </div>
+        </div>
+
+        <!-- TURF CARD 3 -->
+        <div class="turf-card">
+            <div class="turf-image image-3">
+                ⚽
+                <div class="rating-badge">⭐ 4.9</div>
+            </div>
+            <div class="turf-content">
+                <div class="turf-name">Champions League Turf</div>
+                <div class="turf-info">
+                    <div class="turf-price">₹950/hr</div>
+                    <div class="turf-hours">7 AM - 12 AM</div>
+                </div>
+                <div class="turf-tags">
+                    <span class="tag">Indoor</span>
+                    <span class="tag">Premium</span>
+                    <span class="tag">WiFi</span>
+                </div>
+                <div class="turf-slots">✓ 11 slots available today</div>
+                <button class="book-btn">Book Now</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- BOTTOM NAVIGATION -->
+    <div class="bottom-nav">
+        <a class="nav-item active">
+            <span class="nav-icon">🏠</span>
+            <span>Home</span>
+        </a>
+        <a class="nav-item">
+            <span class="nav-icon">📅</span>
+            <span>Bookings</span>
+        </a>
+        <a class="nav-item">
+            <span class="nav-icon">❤️</span>
+            <span>Favorites</span>
+        </a>
+        <a class="nav-item">
+            <span class="nav-icon">👤</span>
+            <span>Profile</span>
+        </a>
+    </div>
+
+    <script>
+        // Interactive filter chips
+        document.querySelectorAll('.filter-chip').forEach(chip => {
+            chip.addEventListener('click', function() {
+                document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // Bottom navigation active state
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', function() {
+                document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+                this.classList.add('active');
+                alert('Navigate to ' + this.innerText);
+            });
+        });
+
+        // Book button clicks
+        document.querySelectorAll('.book-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const turfName = this.closest('.turf-card').querySelector('.turf-name').innerText;
+                alert('Booking: ' + turfName);
+            });
+        });
+    </script>
+</body>
+</html>
