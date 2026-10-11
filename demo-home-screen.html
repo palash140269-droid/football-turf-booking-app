@@ -1,508 +1,560 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Football Turf Booking - Home</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TurfHub - Demo Home Screen</title>
+  <style>
+    :root {
+      --green: #18a957;
+      --green-dark: #0f7d42;
+      --green-soft: #eafaf1;
+      --orange: #f59e0b;
+      --dark: #111827;
+      --muted: #6b7280;
+      --line: #e5e7eb;
+      --bg: #f4f6f8;
+      --card: #ffffff;
+      --chip: #f3f4f6;
+      --shadow: 0 8px 20px rgba(17, 24, 39, 0.08);
+      --radius: 18px;
+    }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: #f3f4f6;
-            color: #111827;
-        }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-        /* Mobile-first: 360px - 430px viewport */
-        @media (max-width: 768px) {
-            body {
-                font-size: 14px;
-            }
-        }
+    html, body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--dark);
+      height: 100%;
+    }
 
-        /* ===== HEADER ===== */
-        .header {
-            background: white;
-            border-bottom: 1px solid #e5e7eb;
-            padding: 12px 16px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 10;
-        }
+    body {
+      max-width: 430px;
+      margin: 0 auto;
+      padding-bottom: 72px;
+      background: #f7f9f8;
+    }
 
-        .header-left {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 18px;
+      background: #f2fbf5;
+      border-bottom: 1px solid #d9f3e3;
+    }
 
-        .logo {
-            font-size: 24px;
-            font-weight: 700;
-            color: #18a957;
-        }
+    .top-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--green);
+      color: #fff;
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-size: 12px;
+      font-weight: 700;
+    }
 
-        .location {
-            font-size: 12px;
-            color: #6b7280;
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
+    .user-info {
+      font-size: 12px;
+      color: var(--green-dark);
+      font-weight: 600;
+    }
 
-        .header-icons {
-            display: flex;
-            gap: 12px;
-        }
+    .header {
+      background: #fff;
+      padding: 16px 18px 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--line);
+    }
 
-        .icon-btn {
-            background: none;
-            border: none;
-            font-size: 20px;
-            cursor: pointer;
-            color: #111827;
-        }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
 
-        /* ===== SEARCH BAR ===== */
-        .search-section {
-            background: white;
-            padding: 16px;
-            border-bottom: 1px solid #e5e7eb;
-        }
+    .brand-mark {
+      width: 40px;
+      height: 40px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, #69ef9b, #0ca95d);
+      border-radius: 12px;
+      font-size: 20px;
+      color: white;
+      box-shadow: 0 8px 16px rgba(24, 169, 87, 0.2);
+    }
 
-        .search-bar {
-            display: flex;
-            align-items: center;
-            background: #f3f4f6;
-            border-radius: 8px;
-            padding: 10px 12px;
-            gap: 8px;
-        }
+    .brand-text {
+      font-size: 19px;
+      font-weight: 800;
+      color: var(--dark);
+    }
 
-        .search-bar input {
-            border: none;
-            background: transparent;
-            width: 100%;
-            font-size: 14px;
-            outline: none;
-        }
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
 
-        .search-bar input::placeholder {
-            color: #9ca3af;
-        }
+    .icon-button {
+      width: 36px;
+      height: 36px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #fff;
+      font-size: 18px;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+    }
 
-        /* ===== FILTER CHIPS ===== */
-        .filter-section {
-            padding: 12px 16px;
-            background: white;
-            border-bottom: 1px solid #e5e7eb;
-            display: flex;
-            gap: 8px;
-            overflow-x: auto;
-            scroll-behavior: smooth;
-        }
+    .search-wrap {
+      background: #fff;
+      padding: 14px 18px 12px;
+    }
 
-        .filter-chip {
-            padding: 8px 14px;
-            border-radius: 20px;
-            border: 1px solid #d1d5db;
-            background: white;
-            font-size: 13px;
-            white-space: nowrap;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
+    .search-box {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--chip);
+      border: 1px solid #ececec;
+      border-radius: 14px;
+      padding: 12px 14px;
+    }
 
-        .filter-chip:hover {
-            border-color: #18a957;
-            color: #18a957;
-        }
+    .search-box input {
+      border: none;
+      outline: none;
+      background: transparent;
+      width: 100%;
+      font-size: 14px;
+      color: var(--dark);
+    }
 
-        .filter-chip.active {
-            background: #18a957;
-            color: white;
-            border-color: #18a957;
-        }
+    .search-box input::placeholder {
+      color: #9ca3af;
+    }
 
-        /* ===== PROMO BANNER ===== */
-        .promo-banner {
-            margin: 12px 16px;
-            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
-            border-radius: 8px;
-            padding: 16px;
-            color: white;
-            text-align: center;
-        }
+    .filter-row {
+      background: #fff;
+      padding: 0 18px 12px;
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
 
-        .promo-banner h3 {
-            font-size: 16px;
-            margin-bottom: 4px;
-        }
+    .filter-row::-webkit-scrollbar {
+      display: none;
+    }
 
-        .promo-banner p {
-            font-size: 12px;
-            opacity: 0.9;
-        }
+    .chip {
+      flex-shrink: 0;
+      border: 1px solid #dfe3e7;
+      background: #fff;
+      color: var(--dark);
+      border-radius: 999px;
+      padding: 8px 14px;
+      font-size: 12px;
+      font-weight: 600;
+    }
 
-        /* ===== TURF CARD ===== */
-        .turfs-section {
-            padding: 12px 16px;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin-bottom: 80px;
-        }
+    .chip.active {
+      background: var(--green);
+      color: white;
+      border-color: var(--green);
+      box-shadow: 0 8px 16px rgba(24, 169, 87, 0.2);
+    }
 
-        .turf-card {
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
+    .offer-card {
+      margin: 10px 18px 12px;
+      background: linear-gradient(135deg, #f7b935, #e28a00);
+      border-radius: 18px;
+      padding: 16px 18px;
+      color: white;
+      box-shadow: 0 12px 18px rgba(242, 158, 11, 0.25);
+    }
 
-        .turf-card:active {
-            transform: translateY(2px);
-            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
-        }
+    .offer-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 6px;
+    }
 
-        .turf-image {
-            width: 100%;
-            height: 160px;
-            background: linear-gradient(135deg, #18a957 0%, #059669 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 48px;
-            color: white;
-            position: relative;
-        }
+    .offer-tag {
+      background: rgba(255,255,255,0.18);
+      border: 1px solid rgba(255,255,255,0.22);
+      border-radius: 999px;
+      padding: 5px 10px;
+      font-size: 11px;
+      font-weight: 700;
+    }
 
-        .turf-image.image-2 {
-            background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
-        }
+    .offer-card h3 {
+      font-size: 17px;
+      font-weight: 800;
+      margin: 0;
+    }
 
-        .turf-image.image-3 {
-            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
-        }
+    .offer-card p {
+      margin-top: 6px;
+      font-size: 12px;
+      opacity: 0.94;
+    }
 
-        .rating-badge {
-            position: absolute;
-            top: 8px;
-            right: 8px;
-            background: white;
-            padding: 4px 8px;
-            border-radius: 6px;
-            font-size: 12px;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 3px;
-        }
+    .content {
+      padding: 4px 18px 0;
+    }
 
-        .turf-content {
-            padding: 12px;
-        }
+    .section-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      padding-top: 4px;
+    }
 
-        .turf-name {
-            font-size: 16px;
-            font-weight: 600;
-            margin-bottom: 4px;
-        }
+    .section-title h4 {
+      font-size: 16px;
+      font-weight: 800;
+    }
 
-        .turf-info {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 8px;
-        }
+    .section-title span {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 600;
+    }
 
-        .turf-price {
-            font-size: 14px;
-            font-weight: 600;
-            color: #18a957;
-        }
+    .turf-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
 
-        .turf-hours {
-            font-size: 12px;
-            color: #6b7280;
-        }
+    .turf-card {
+      background: var(--card);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(17,24,39,0.04);
+    }
 
-        .turf-tags {
-            display: flex;
-            gap: 4px;
-            flex-wrap: wrap;
-            margin-bottom: 10px;
-        }
+    .turf-image {
+      position: relative;
+      height: 170px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 52px;
+      background: linear-gradient(135deg, #1ecf6d, #0a9152);
+    }
 
-        .tag {
-            background: #f3f4f6;
-            color: #374151;
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 11px;
-        }
+    .turf-image.alt-1 {
+      background: linear-gradient(135deg, #3b82f6, #1a56b9);
+    }
 
-        .turf-slots {
-            font-size: 12px;
-            color: #6b7280;
-            margin-bottom: 10px;
-        }
+    .turf-image.alt-2 {
+      background: linear-gradient(135deg, #ffbf47, #de7a00);
+    }
 
-        .book-btn {
-            width: 100%;
-            padding: 10px;
-            background: #18a957;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.3s ease;
-        }
+    .badge {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: rgba(255,255,255,0.9);
+      color: var(--dark);
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 12px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
 
-        .book-btn:active {
-            background: #16a34a;
-        }
+    .turf-body {
+      padding: 14px 14px 16px;
+    }
 
-        /* ===== BOTTOM NAVIGATION ===== */
-        .bottom-nav {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            background: white;
-            border-top: 1px solid #e5e7eb;
-            display: flex;
-            justify-content: space-around;
-            padding: 8px 0;
-            z-index: 20;
-        }
+    .turf-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
 
-        .nav-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 4px;
-            padding: 8px;
-            text-decoration: none;
-            color: #6b7280;
-            font-size: 11px;
-            flex: 1;
-            cursor: pointer;
-            transition: color 0.3s ease;
-        }
+    .turf-name {
+      font-weight: 800;
+      font-size: 17px;
+      line-height: 1.3;
+    }
 
-        .nav-item.active {
-            color: #18a957;
-        }
+    .turf-price {
+      font-weight: 800;
+      color: var(--green);
+      font-size: 15px;
+      white-space: nowrap;
+    }
 
-        .nav-icon {
-            font-size: 24px;
-        }
+    .meta-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      color: var(--muted);
+      font-size: 12px;
+      margin-bottom: 10px;
+    }
 
-        /* ===== ROLE INDICATOR ===== */
-        .role-selector {
-            padding: 12px 16px;
-            background: #f0fdf4;
-            border-bottom: 2px solid #bbf7d0;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
+    .pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 12px;
+    }
 
-        .role-badge {
-            display: inline-block;
-            background: #18a957;
-            color: white;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
-        }
+    .pill {
+      background: #f4f5f7;
+      color: #374151;
+      border-radius: 8px;
+      padding: 5px 8px;
+      font-size: 11px;
+      font-weight: 600;
+    }
 
-        .role-text {
-            font-size: 12px;
-            color: #059669;
-        }
+    .slots {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #0f7d42;
+      font-weight: 700;
+      font-size: 12px;
+      margin-bottom: 12px;
+    }
 
-        /* ===== RESPONSIVE ===== */
-        @media (min-width: 769px) {
-            .header, .search-section, .filter-section {
-                margin: 0 auto;
-                max-width: 430px;
-            }
-            .turfs-section, .bottom-nav {
-                max-width: 430px;
-                margin-left: auto;
-                margin-right: auto;
-            }
-        }
-    </style>
+    .slots .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #23c16b;
+      display: inline-block;
+    }
+
+    .cta {
+      width: 100%;
+      background: var(--green);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      padding: 12px 16px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 10px 18px rgba(24, 169, 87, 0.2);
+    }
+
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 430px;
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(8px);
+      border-top: 1px solid var(--line);
+      display: flex;
+      justify-content: space-around;
+      padding: 8px 0 10px;
+      z-index: 10;
+    }
+
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 700;
+      width: 25%;
+      text-decoration: none;
+      padding: 6px 0;
+    }
+
+    .nav-item.active {
+      color: var(--green);
+    }
+
+    .nav-icon {
+      font-size: 22px;
+      line-height: 1;
+    }
+  </style>
 </head>
 <body>
-    <!-- ROLE INDICATOR -->
-    <div class="role-selector">
-        <span class="role-badge">Player</span>
-        <span class="role-text">Logged in as: Arjun Sharma</span>
+  <div class="top-bar">
+    <div class="top-badge">Player</div>
+    <div class="user-info">Arjun Sharma</div>
+  </div>
+
+  <header class="header">
+    <div class="brand">
+      <div class="brand-mark">⚽</div>
+      <div class="brand-text">TurfHub</div>
+    </div>
+    <div class="header-actions">
+      <button class="icon-button" aria-label="Notifications">🔔</button>
+      <button class="icon-button" aria-label="Favorites">❤️</button>
+    </div>
+  </header>
+
+  <div class="search-wrap">
+    <div class="search-box">
+      <span>🔍</span>
+      <input type="text" placeholder="Search turf by name or area" />
+    </div>
+  </div>
+
+  <div class="filter-row">
+    <div class="chip active">Nearby</div>
+    <div class="chip">5v5</div>
+    <div class="chip">7v7</div>
+    <div class="chip">Indoor</div>
+    <div class="chip">Outdoor</div>
+    <div class="chip">Floodlights</div>
+  </div>
+
+  <div class="offer-card">
+    <div class="offer-top">
+      <div class="offer-tag">Limited Deal</div>
+      <div>⏰</div>
+    </div>
+    <h3>Weekend Special</h3>
+    <p>Get 15% off on all turf bookings this weekend.</p>
+  </div>
+
+  <main class="content">
+    <div class="section-title">
+      <h4>Featured turfs</h4>
+      <span>See all</span>
     </div>
 
-    <!-- HEADER -->
-    <div class="header">
-        <div class="header-left">
-            <div class="logo">⚽ TurfHub</div>
-            <div class="location">📍 Bengaluru</div>
+    <div class="turf-list">
+      <article class="turf-card">
+        <div class="turf-image">
+          ⚽
+          <div class="badge">⭐ 4.8</div>
         </div>
-        <div class="header-icons">
-            <button class="icon-btn">🔔</button>
-            <button class="icon-btn">❤️</button>
+        <div class="turf-body">
+          <div class="turf-header">
+            <div class="turf-name">Greenfield Premier Arena</div>
+            <div class="turf-price">₹800/hr</div>
+          </div>
+
+          <div class="meta-row">
+            <span>📍 1.2 km away</span>
+            <span>⏰ 7 AM - 11 PM</span>
+          </div>
+
+          <div class="pills">
+            <span class="pill">Indoor</span>
+            <span class="pill">Floodlights</span>
+            <span class="pill">Parking</span>
+          </div>
+
+          <div class="slots"><span class="dot"></span> 7 slots available today</div>
+          <button class="cta">Book Now</button>
         </div>
-    </div>
+      </article>
 
-    <!-- SEARCH BAR -->
-    <div class="search-section">
-        <div class="search-bar">
-            <span>🔍</span>
-            <input type="text" placeholder="Search turf by name or area">
+      <article class="turf-card">
+        <div class="turf-image alt-1">
+          ⚽
+          <div class="badge">⭐ 4.7</div>
         </div>
-    </div>
+        <div class="turf-body">
+          <div class="turf-header">
+            <div class="turf-name">City Football Ground</div>
+            <div class="turf-price">₹600/hr</div>
+          </div>
 
-    <!-- FILTER CHIPS -->
-    <div class="filter-section">
-        <div class="filter-chip active">Nearby</div>
-        <div class="filter-chip">5v5</div>
-        <div class="filter-chip">7v7</div>
-        <div class="filter-chip">Indoor</div>
-        <div class="filter-chip">Outdoor</div>
-        <div class="filter-chip">Floodlights</div>
-    </div>
+          <div class="meta-row">
+            <span>📍 2.4 km away</span>
+            <span>⏰ 6 AM - 10 PM</span>
+          </div>
 
-    <!-- PROMO BANNER -->
-    <div class="promo-banner">
-        <h3>🎉 Weekend Special</h3>
-        <p>Get 15% off on all bookings this weekend!</p>
-    </div>
+          <div class="pills">
+            <span class="pill">Outdoor</span>
+            <span class="pill">Parking</span>
+            <span class="pill">Water</span>
+          </div>
 
-    <!-- TURFS SECTION -->
-    <div class="turfs-section">
-        <!-- TURF CARD 1 -->
-        <div class="turf-card">
-            <div class="turf-image">
-                ⚽
-                <div class="rating-badge">⭐ 4.8</div>
-            </div>
-            <div class="turf-content">
-                <div class="turf-name">Greenfield Premier Arena</div>
-                <div class="turf-info">
-                    <div class="turf-price">₹800/hr</div>
-                    <div class="turf-hours">7 AM - 11 PM</div>
-                </div>
-                <div class="turf-tags">
-                    <span class="tag">Indoor</span>
-                    <span class="tag">Floodlights</span>
-                    <span class="tag">Parking</span>
-                </div>
-                <div class="turf-slots">✓ 7 slots available today</div>
-                <button class="book-btn">Book Now</button>
-            </div>
+          <div class="slots"><span class="dot"></span> 5 slots available today</div>
+          <button class="cta">Book Now</button>
         </div>
+      </article>
 
-        <!-- TURF CARD 2 -->
-        <div class="turf-card">
-            <div class="turf-image image-2">
-                ⚽
-                <div class="rating-badge">⭐ 4.7</div>
-            </div>
-            <div class="turf-content">
-                <div class="turf-name">City Football Ground</div>
-                <div class="turf-info">
-                    <div class="turf-price">₹600/hr</div>
-                    <div class="turf-hours">6 AM - 10 PM</div>
-                </div>
-                <div class="turf-tags">
-                    <span class="tag">Outdoor</span>
-                    <span class="tag">Parking</span>
-                </div>
-                <div class="turf-slots">✓ 5 slots available today</div>
-                <button class="book-btn">Book Now</button>
-            </div>
+      <article class="turf-card">
+        <div class="turf-image alt-2">
+          ⚽
+          <div class="badge">⭐ 4.9</div>
         </div>
+        <div class="turf-body">
+          <div class="turf-header">
+            <div class="turf-name">Champions League Turf</div>
+            <div class="turf-price">₹950/hr</div>
+          </div>
 
-        <!-- TURF CARD 3 -->
-        <div class="turf-card">
-            <div class="turf-image image-3">
-                ⚽
-                <div class="rating-badge">⭐ 4.9</div>
-            </div>
-            <div class="turf-content">
-                <div class="turf-name">Champions League Turf</div>
-                <div class="turf-info">
-                    <div class="turf-price">₹950/hr</div>
-                    <div class="turf-hours">7 AM - 12 AM</div>
-                </div>
-                <div class="turf-tags">
-                    <span class="tag">Indoor</span>
-                    <span class="tag">Premium</span>
-                    <span class="tag">WiFi</span>
-                </div>
-                <div class="turf-slots">✓ 11 slots available today</div>
-                <button class="book-btn">Book Now</button>
-            </div>
+          <div class="meta-row">
+            <span>📍 3.1 km away</span>
+            <span>⏰ 7 AM - 12 AM</span>
+          </div>
+
+          <div class="pills">
+            <span class="pill">Premium</span>
+            <span class="pill">Indoor</span>
+            <span class="pill">WiFi</span>
+          </div>
+
+          <div class="slots"><span class="dot"></span> 11 slots available today</div>
+          <button class="cta">Book Now</button>
         </div>
+      </article>
     </div>
+  </main>
 
-    <!-- BOTTOM NAVIGATION -->
-    <div class="bottom-nav">
-        <a class="nav-item active">
-            <span class="nav-icon">🏠</span>
-            <span>Home</span>
-        </a>
-        <a class="nav-item">
-            <span class="nav-icon">📅</span>
-            <span>Bookings</span>
-        </a>
-        <a class="nav-item">
-            <span class="nav-icon">❤️</span>
-            <span>Favorites</span>
-        </a>
-        <a class="nav-item">
-            <span class="nav-icon">👤</span>
-            <span>Profile</span>
-        </a>
-    </div>
-
-    <script>
-        // Interactive filter chips
-        document.querySelectorAll('.filter-chip').forEach(chip => {
-            chip.addEventListener('click', function() {
-                document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
-                this.classList.add('active');
-            });
-        });
-
-        // Bottom navigation active state
-        document.querySelectorAll('.nav-item').forEach(item => {
-            item.addEventListener('click', function() {
-                document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
-                this.classList.add('active');
-                alert('Navigate to ' + this.innerText);
-            });
-        });
-
-        // Book button clicks
-        document.querySelectorAll('.book-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                const turfName = this.closest('.turf-card').querySelector('.turf-name').innerText;
-                alert('Booking: ' + turfName);
-            });
-        });
-    </script>
+  <nav class="bottom-nav" aria-label="Main navigation">
+    <a class="nav-item active" href="#">
+      <span class="nav-icon">🏠</span>
+      <span>Home</span>
+    </a>
+    <a class="nav-item" href="#">
+      <span class="nav-icon">📅</span>
+      <span>Bookings</span>
+    </a>
+    <a class="nav-item" href="#">
+      <span class="nav-icon">❤️</span>
+      <span>Favorites</span>
+    </a>
+    <a class="nav-item" href="#">
+      <span class="nav-icon">👤</span>
+      <span>Profile</span>
+    </a>
+  </nav>
 </body>
 </html>
